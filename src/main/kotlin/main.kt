@@ -13,11 +13,11 @@ fun countValidPassports(input: String): Int {
 fun isValidPassport(input: String): Boolean {
     val requiredValues = listOf(
         EyeColorValue(),
-        PassportValue("pid"),
-        PassportValue("eyr"),
-        PassportValue("hcl"),
-        PassportValue("byr"),
-        PassportValue("iyr"),
+        PidValue(),
+        YearValue("eyr", 2020, 2030),
+        HairColorValue(),
+        YearValue("byr", 1920, 2002),
+        YearValue("iyr", 2010, 2020),
         PassportValue("hgt")
     )
 

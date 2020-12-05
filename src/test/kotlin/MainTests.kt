@@ -32,8 +32,28 @@ class MainTests {
     }
 
     @Test
+    fun `Eight digit pid is invalid`() {
+        val input = "ecl:gry pid:86003332 eyr:2020 hcl:#fffffd byr:1937 iyr:2017 cid:147 hgt:183cm"
+
+        assertFalse(isValidPassport(input))
+    }
+
+    @Test
     fun `Missing eyr is invalid`() {
         val input = "ecl:gry pid:860033327 hcl:#fffffd byr:1937 iyr:2017 cid:147 hgt:183cm"
+
+        assertFalse(isValidPassport(input))
+    }
+
+    @Test
+    fun `2019 eyr is invalid`() {
+        val input = "ecl:gry pid:860033323 eyr:2019 hcl:#fffffd byr:1937 iyr:2017 cid:147 hgt:183cm"
+
+        assertFalse(isValidPassport(input))
+    }
+    @Test
+    fun `2031 eyr is invalid`() {
+        val input = "ecl:gry pid:860033323 eyr:2031 hcl:#fffffd byr:1937 iyr:2017 cid:147 hgt:183cm"
 
         assertFalse(isValidPassport(input))
     }
@@ -46,6 +66,27 @@ class MainTests {
     }
 
     @Test
+    fun `hcl without hash is invalid`() {
+        val input = "ecl:gry pid:860033327 eyr:2020 hcl:fffffd byr:1937 iyr:2017 cid:147 hgt:183cm"
+
+        assertFalse(isValidPassport(input))
+    }
+
+    @Test
+    fun `hcl with seven hex values is invalid`() {
+        val input = "ecl:gry pid:860033327 eyr:2020 hcl:#fffffd2 byr:1937 iyr:2017 cid:147 hgt:183cm"
+
+        assertFalse(isValidPassport(input))
+    }
+
+    @Test
+    fun `hcl with invalid hex letter is invalid`() {
+        val input = "ecl:gry pid:860033327 eyr:2020 hcl:#rfffff byr:1937 iyr:2017 cid:147 hgt:183cm"
+
+        assertFalse(isValidPassport(input))
+    }
+
+    @Test
     fun `Missing byr is invalid`() {
         val input = "ecl:gry pid:860033327 eyr:2020 hcl:#fffffd iyr:2017 cid:147 hgt:183cm"
 
@@ -53,8 +94,34 @@ class MainTests {
     }
 
     @Test
+    fun `1919 byr is invalid`() {
+        val input = "ecl:gry pid:860033323 eyr:2020 hcl:#fffffd byr:1919 iyr:2017 cid:147 hgt:183cm"
+
+        assertFalse(isValidPassport(input))
+    }
+    @Test
+    fun `2003 eyr is invalid`() {
+        val input = "ecl:gry pid:860033323 eyr:2020 hcl:#fffffd byr:2003 iyr:2017 cid:147 hgt:183cm"
+
+        assertFalse(isValidPassport(input))
+    }
+
+    @Test
     fun `Missing iyr is invalid`() {
         val input = "ecl:gry pid:860033327 eyr:2020 hcl:#fffffd byr:1937 cid:147 hgt:183cm"
+
+        assertFalse(isValidPassport(input))
+    }
+
+    @Test
+    fun `2009 iyr is invalid`() {
+        val input = "ecl:gry pid:860033323 eyr:2020 hcl:#fffffd byr:2002 iyr:2009 cid:147 hgt:183cm"
+
+        assertFalse(isValidPassport(input))
+    }
+    @Test
+    fun `2021 iyr is invalid`() {
+        val input = "ecl:gry pid:860033323 eyr:2020 hcl:#fffffd byr:2002 iyr:2021 cid:147 hgt:183cm"
 
         assertFalse(isValidPassport(input))
     }
