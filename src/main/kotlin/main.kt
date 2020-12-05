@@ -18,7 +18,7 @@ fun isValidPassport(input: String): Boolean {
         HairColorValue(),
         YearValue("byr", 1920, 2002),
         YearValue("iyr", 2010, 2020),
-        PassportValue("hgt")
+        HeightValue()
     )
 
     return requiredValues.all { required -> required.isValid(input) }

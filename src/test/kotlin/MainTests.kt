@@ -134,6 +134,41 @@ class MainTests {
     }
 
     @Test
+    fun `hgt with units inches valid`() {
+        val input = "ecl:gry pid:860033327 eyr:2020 hcl:#fffffd byr:1937 iyr:2017 cid:147  hgt:62in"
+
+        assertTrue(isValidPassport(input))
+    }
+
+    @Test
+    fun `hgt of 58 inches is invalid`() {
+        val input = "ecl:gry pid:860033327 eyr:2020 hcl:#fffffd byr:1937 iyr:2017 cid:147 hgt:58in"
+
+        assertFalse(isValidPassport(input))
+    }
+    @Test
+    fun `hgt of 77 inches is invalid`() {
+        val input = "ecl:gry pid:860033327 eyr:2020 hcl:#fffffd byr:1937 iyr:2017 cid:147 hgt:77in"
+
+        assertFalse(isValidPassport(input))
+    }
+
+    @Test
+    fun `hgt of 149cm is invalid`() {
+        val input = "ecl:gry pid:860033327 eyr:2020 hcl:#fffffd byr:1937 iyr:2017 cid:147 hgt:149cm"
+
+        assertFalse(isValidPassport(input))
+    }
+    @Test
+    fun `hgt of 194cm is invalid`() {
+        val input = "ecl:gry pid:860033327 eyr:2020 hcl:#fffffd byr:1937 iyr:2017 cid:147 hgt:194cm"
+
+        assertFalse(isValidPassport(input))
+    }
+
+
+
+    @Test
     fun `One valid passport on one line counts one`() {
         val input = "ecl:gry pid:860033327 eyr:2020 hcl:#fffffd byr:1937 iyr:2017 cid:147 hgt:183cm"
 
