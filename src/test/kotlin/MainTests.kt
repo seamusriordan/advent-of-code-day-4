@@ -17,8 +17,16 @@ class MainTests {
     }
 
     @Test
+    fun `ecl red invalid`() {
+        val input = "ecl:red pid:860033327 eyr:2020 hcl:#fffffd byr:1937 iyr:2017 cid:147 hgt:183cm"
+
+        assertFalse(isValidPassport(input))
+    }
+
+
+    @Test
     fun `Missing pid is invalid`() {
-        val input = "ecl:gry eyr:2020 hcl:#fffffd byr:1937 iyr:2017 cid:147 hgt:183cm"
+        val input = "ecl:fff eyr:2020 hcl:#fffffd byr:1937 iyr:2017 cid:147 hgt:183cm"
 
         assertFalse(isValidPassport(input))
     }

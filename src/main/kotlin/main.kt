@@ -11,9 +11,15 @@ fun countValidPassports(input: String): Int {
 }
 
 fun isValidPassport(input: String): Boolean {
-    val requiredString = listOf("ecl", "pid", "eyr", "hcl", "byr", "iyr", "hgt")
+    val requiredValues = listOf(
+        EyeColorValue(),
+        PassportValue("pid"),
+        PassportValue("eyr"),
+        PassportValue("hcl"),
+        PassportValue("byr"),
+        PassportValue("iyr"),
+        PassportValue("hgt")
+    )
 
-    val requiredRegex = requiredString.map { token -> Regex(token) }
-
-    return requiredRegex.all { regex -> input.contains(regex) }
+    return requiredValues.all { required -> required.isValid(input) }
 }
